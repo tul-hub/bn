@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অনার্স ১ম বর্ষ পরীক্ষা-২০২৫ রুটিন ও কাউন্টডাউন</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h3 {
+            text-align: center;
+            color: #1a4d2e;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .exam-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 5px solid #1a4d2e;
+        }
+        .exam-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .exam-code {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .exam-date {
+            font-weight: bold;
+            color: #d9534f;
+            margin-bottom: 15px;
+        }
+        .timer-container {
+            display: flex;
+            justify-content: space-between;
+            background: #eef2f3;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .time-box {
+            text-align: center;
+        }
+        .time-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .time-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        .completed {
+            text-align: center;
+            font-weight: bold;
+            color: green;
+            font-size: 1.2rem;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>জাতীয় বিশ্ববিদ্যালয় অনার্স ১ম বর্ষ পরীক্ষা-২০২৫</h1>
+    <h3>বাংলা বিভাগ (২০২৪-২৫) | পরীক্ষা আরম্ভ: দুপুর ১:৩০টা</h3>
+
+    <div class="container" id="exam-list"></div>
+
+    <script>
+        const exams = [
+            { date: "2026-07-27T13:30:00+06:00", subject: "বাংলাদেশের ইতিহাস: ভাষা, সংস্কৃতি, পরিচয়", code: "২১১৫২১", bDate: "২৭/০৭/২০২৬ ইং, সোমবার" },
+            { date: "2026-08-04T13:30:00+06:00", subject: "তথ্য ও যোগাযোগ প্রযুক্তি (আবশ্যিক)", code: "২১৬৬০১", bDate: "০৪/০৮/২০২৬ ইং, মঙ্গলবার" },
+            { date: "2026-08-10T13:30:00+06:00", subject: "বাংলাদেশ এবং বাঙালির ইতিহাস ও সংস্কৃতি", code: "২১১০০১", bDate: "১০/০৮/২০২৬ ইং, সোমবার" },
+            { date: "2026-08-13T13:30:00+06:00", subject: "বাংলা ভাষার ইতিহাস ও ব্যবহারিক বাংলা", code: "২১১০০৩", bDate: "১৩/০৮/২০২৬ ইং, বৃহস্পতিবার" },
+            { date: "2026-08-16T13:30:00+06:00", subject: "বাংলা কবিতা-০১", code: "২১১০০৫", bDate: "১৬/০৮/২০২৬ ইং, রবিবার" },
+            { date: "2026-08-19T13:30:00+06:00", subject: "বাংলা উপন্যাস-০১", code: "২১১০০৭", bDate: "১৯/০৮/২০২৬ ইং, বুধবার" },
+            { date: "2026-08-23T13:30:00+06:00", subject: "রাষ্ট্রবিজ্ঞান পরিচিতি", code: "২১১১০৯", bDate: "২৩/০৮/২০২৬ ইং, রবিবার" },
+            { date: "2026-08-27T13:30:00+06:00", subject: "সমাজকর্ম পরিচিতি", code: "২১২১০৯", bDate: "২৭/০৮/২০২৬ ইং, বৃহস্পতিবার" },
+            { date: "2026-08-30T13:30:00+06:00", subject: "সমাজবিজ্ঞান পরিচিতি", code: "২১২০০৯", bDate: "৩০/০৮/২০২৬ ইং, রবিবার" }
+        ];
+
+        const convertToBanglaNumber = (num) => {
+            const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            return num.toString().padStart(2, '0').replace(/[0-9]/g, w => banglaDigits[w]);
+        };
+
+        const container = document.getElementById("exam-list");
+
+        exams.forEach((exam, index) => {
+            const card = document.createElement("div");
+            card.className = "exam-card";
+            card.innerHTML = `
+                <div class="exam-title">${exam.subject}</div>
+                <div class="exam-code">বিষয়কোড: ${convertToBanglaNumber(exam.code)}</div>
+                <div class="exam-date">তারিখ: ${exam.bDate}</div>
+                <div id="timer-${index}">
+                    <div class="timer-container">
+                        <div class="time-box"><div class="time-value" id="days-${index}">০০</div><div class="time-label">দিন</div></div>
+                        <div class="time-box"><div class="time-value" id="hours-${index}">০০</div><div class="time-label">ঘণ্টা</div></div>
+                        <div class="time-box"><div class="time-value" id="minutes-${index}">০০</div><div class="time-label">মিনিট</div></div>
+                        <div class="time-box"><div class="time-value" id="seconds-${index}">০০</div><div class="time-label">সেকেন্ড</div></div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        setInterval(() => {
+            const now = new Date().getTime();
+
+            exams.forEach((exam, index) => {
+                const targetDate = new Date(exam.date).getTime();
+                const distance = targetDate - now;
+
+                const timerDiv = document.getElementById(`timer-${index}`);
+
+                if (distance < 0) {
+                    timerDiv.innerHTML = "<div class='completed'>পরীক্ষা সম্পন্ন হয়েছে</div>";
+                    return;
+                }
+
+                document.getElementById(`days-${index}`).innerText = convertToBanglaNumber(Math.floor(distance / (1000 * 60 * 60 * 24)));
+                document.getElementById(`hours-${index}`).innerText = convertToBanglaNumber(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                document.getElementById(`minutes-${index}`).innerText = convertToBanglaNumber(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                document.getElementById(`seconds-${index}`).innerText = convertToBanglaNumber(Math.floor((distance % (1000 * 60)) / 1000));
+            });
+        }, 1000);
+    </script>
+
+</body>
+</html>
