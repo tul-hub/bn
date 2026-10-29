@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<!-- ANTI-THEFT & CODE PROTECTION LAYER -->
+<script>
+(function(){
+  'use strict';
+  // Anti-inspection: Disable context menu
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+  // Anti-source dumping: Block common devtools & view-source shortcuts
+  document.addEventListener('keydown', function(e){
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
+      (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
+      (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's')) ||
+      (e.metaKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's'))
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Console Security Warning
+  try {
+    console.log(
+      '%c🔒 PROTECTED CODE%c\nThis game source code is protected against unauthorized copying and theft.\n© OmniGame Room. All rights reserved.',
+      'color:#10b981;font-size:16px;font-weight:900;',
+      'color:#94a3b8;font-size:12px;'
+    );
+  } catch(e) {}
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0E3B2E">
+<title>Aam Jam Kanthal Lichi - 4 Match Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Galada&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leaf:#0E3B2E; --leaf-2:#14493A; --ink:#071A14; --panel:#0A2B21; --panel-2:#10382B;
+  --text:#F4F1E4; --muted:#A9C7B8; --sun:#FFC21A; --sun-ink:#2B1B00; --rose:#FF5C8A; --mint:#3DD6A0;
+  --mango:#F6B400; --jamun:#5A2D8C; --jamun-lt:#BFA0FF; --kanthal:#8CB93B; --lichi:#E0365A;
+  --font:"Hind Siliguri","Noto Sans Bengali","Kohinoor Bangla","Nirmala UI",system-ui,sans-serif;
+  --display:"Galada","Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100vh;min-height:100dvh;color:var(--text);font-family:var(--font);font-size:16px;line-height:1.45;
+  background:
+    radial-gradient(circle at 20% 15%,rgba(255,194,26,.10) 0 2px,transparent 3px) 0 0/34px 34px,
+    radial-gradient(circle at 70% 60%,rgba(255,92,138,.08) 0 2px,transparent 3px) 0 0/46px 46px,
+    linear-gradient(180deg,var(--leaf-2),var(--leaf) 40%,#0A2F25);
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 14px 40px}
+button,input{font:inherit}
+:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* ---------- title ---------- */
+.top{text-align:center;padding:10px 0 6px}
+.top h1{margin:0;line-height:1.05}
+.top .bn{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,8.5vw,4rem);display:inline-block;transform:rotate(-1.5deg);letter-spacing:.01em;
+  text-shadow:2px 3px 0 var(--ink),-1px -1px 0 var(--ink),2px -1px 0 var(--ink),-1px 3px 0 var(--ink)}
+.top .bn span{display:inline-block;margin:0 .12em}
+.top .bn .a{color:var(--mango)} .top .bn .j{color:var(--jamun-lt)} .top .bn .k{color:var(--kanthal)} .top .bn .l{color:#FF6A88}
+.top small{display:block;margin-top:6px;color:var(--muted);font-size:.9rem;font-weight:500}
+
+/* ---------- buttons ---------- */
+.btn{
+  appearance:none;cursor:pointer;border:3px solid var(--ink);border-radius:14px;padding:10px 16px;
+  background:var(--sun);color:var(--sun-ink);font-weight:700;box-shadow:0 5px 0 var(--ink);
+  transition:transform .08s,box-shadow .08s,filter .15s;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.2;
+}
+.btn small{font-weight:500;font-size:.78rem;opacity:.8}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.btn.alt{background:var(--mint);color:#06251B}
+.btn.rose{background:var(--rose);color:#2B0010}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--muted);box-shadow:none}
+.btn[aria-disabled=true],.btn:disabled{filter:grayscale(.85) brightness(.7);cursor:not-allowed;transform:none;box-shadow:0 5px 0 var(--ink)}
+.btn.ghost[aria-disabled=true]{filter:none;opacity:.45}
+
+/* ---------- menu ---------- */
+.modes{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));margin-top:14px}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:18px;padding:16px;box-shadow:0 6px 0 var(--ink);display:flex;flex-direction:column;gap:12px;position:relative}
+.panel::before{content:"";position:absolute;left:-3px;right:-3px;top:-3px;height:12px;border-radius:18px 18px 0 0;background:var(--stripe,var(--sun));border:3px solid var(--ink);border-bottom:0}
+.panel h2{margin:8px 0 0;font-size:1.25rem}
+.panel p{margin:0;color:var(--muted);font-size:.95rem}
+.panel.solo{--stripe:var(--mango)} .panel.pass{--stripe:#8A5BD0} .panel.online{--stripe:var(--lichi)}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+.field input{background:var(--ink);border:2px solid #2C5A4A;color:var(--text);border-radius:10px;padding:9px 11px;min-width:0;width:100%}
+.field input:focus-visible{outline-offset:1px}
+.seg{display:flex;gap:6px}
+.seg label{flex:1;position:relative}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg span{display:block;text-align:center;padding:8px 0;border-radius:10px;border:2px solid #2C5A4A;background:var(--ink);font-weight:600}
+.seg input:checked+span{background:var(--sun);color:var(--sun-ink);border-color:var(--sun)}
+.seg input:focus-visible+span{outline:3px solid #fff;outline-offset:2px}
+.names{display:grid;gap:6px}
+.row2{display:flex;gap:10px}.row2>*{flex:1}
+.namerow{display:flex;gap:8px;align-items:stretch}
+.namerow input{flex:1}
+.btn.dice{padding:6px 14px;font-size:1.3rem;border-radius:12px;box-shadow:0 4px 0 var(--ink);flex-direction:row}
+.btn.dice.spin{animation:diceroll .4s ease}
+@keyframes diceroll{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.net-note{font-size:.8rem;color:var(--muted)}
+details.rules{margin-top:18px;background:var(--panel);border:3px solid var(--ink);border-radius:14px;padding:10px 14px}
+details.rules summary{cursor:pointer;font-weight:700}
+details.rules ol{margin:8px 0 2px;padding-left:1.3em;color:var(--muted)}
+details.rules li{margin:3px 0}
+
+/* ---------- lobby ---------- */
+.lobby{max-width:520px;margin:18px auto 0}
+.code{font-family:var(--display);font-size:2.6rem;letter-spacing:.18em;color:var(--sun);text-shadow:2px 2px 0 var(--ink);text-align:center;margin:0}
+.plist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.plist li{display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:12px;padding:9px 12px;border:2px solid #1d4a3b}
+.plist .dot{width:12px;height:12px;border-radius:50%;background:var(--mint)}
+.plist .host{margin-left:auto;font-size:.78rem;color:var(--sun)}
+
+/* ---------- game ---------- */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:10px 0}
+.status{font-weight:700;font-size:1.1rem;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font-size:.8rem;font-weight:600;background:var(--ink);border:2px solid #2C5A4A;border-radius:999px;padding:2px 10px;color:var(--muted)}
+.chip.hot{background:var(--rose);color:#2B0010;border-color:var(--ink);animation:blink 1.2s ease-in-out infinite}
+.bar-btns{display:flex;gap:10px}
+.bar-btns .btn{padding:6px 12px;border-radius:12px;box-shadow:0 4px 0 var(--ink);font-size:.9rem}
+
+/* ---------- game: pass & match ---------- */
+.f-mango{--c:#F6B400;--ink-c:#2B1B00}.f-jamun{--c:#5A2D8C;--ink-c:#fff}.f-kanthal{--c:#8CB93B;--ink-c:#14230A}.f-lichi{--c:#E0365A;--ink-c:#fff}
+.f-peyara{--c:#3DB8A5;--ink-c:#042A25}.f-kola{--c:#F0E15A;--ink-c:#2B2800}.f-anaras{--c:#E8742A;--ink-c:#2B1200}.f-tormuj{--c:#4D9BE6;--ink-c:#06182B}
+
+.banner{margin:10px 0 6px;padding:12px 14px;border-radius:14px;background:var(--panel-2);border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);text-align:center;font-weight:700;font-size:1.12rem;line-height:1.3}
+.banner small{display:block;margin-top:2px;font-weight:500;font-size:.85rem;opacity:.85}
+.banner u{text-decoration:none;border-bottom:3px solid currentColor}
+.banner.go{background:var(--sun);color:var(--sun-ink)}
+
+.ring{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:16px 3px;margin:18px 0 4px}
+.seat{position:relative;flex:1 1 70px;max-width:118px;min-width:62px;background:var(--panel);border:3px solid var(--ink);border-radius:14px;padding:12px 6px 7px;text-align:center;box-shadow:0 4px 0 var(--ink)}
+.seat.me{border-color:var(--sun)}
+.seat.turn{outline:3px solid var(--mint);outline-offset:1px;transform:translateY(-3px)}
+.seat.got{animation:ping .9s ease-out 2}
+.seat .nm{font-weight:700;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.seat .mini{display:flex;gap:3px;justify-content:center;margin:6px 0 4px}
+.seat .mini i{width:12px;height:17px;border-radius:3px;border:2px solid var(--ink);background:repeating-linear-gradient(45deg,var(--lichi) 0 3px,#B31F42 3px 6px)}
+.seat .st{display:block;font-size:.72rem;color:var(--muted)}
+.seat.turn .st{color:var(--mint);font-weight:600}
+.tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-size:.66rem;font-weight:700;padding:1px 8px;border-radius:99px;border:2px solid var(--ink);white-space:nowrap}
+.tag.you{background:var(--ink);color:var(--text)}
+.tag.turn{background:var(--sun);color:var(--sun-ink)}
+.tag.to{background:var(--mint);color:#06251B}
+.arrow{align-self:center;color:var(--muted);font-weight:700;font-size:.8rem}
+.ringcap{margin:6px 0 0;text-align:center;font-size:.8rem;color:var(--muted)}
+
+.mine{margin-top:14px;background:var(--panel);border:3px solid var(--ink);border-radius:18px;padding:14px 12px 16px;box-shadow:0 6px 0 var(--ink)}
+.mine h3{margin:0;text-align:center;font-size:1.05rem}
+.mine h3 .lock{display:block;font-size:.78rem;font-weight:500;color:var(--muted)}
+.hand{display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));gap:8px;max-width:560px;margin:20px auto 10px}
+.hand .ph{grid-column:1/-1;border:3px dashed #3A6D5B;border-radius:14px;padding:26px 10px;text-align:center;color:var(--muted)}
+.hc{appearance:none;cursor:pointer;position:relative;padding:0;font:inherit;aspect-ratio:3/4;min-width:0;border-radius:14px;border:3px solid var(--ink);background:var(--c);color:var(--ink-c);box-shadow:0 6px 0 var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;outline:3px solid transparent;outline-offset:2px;transition:transform .15s,box-shadow .15s,outline-color .15s}
+.hc::after{content:"";position:absolute;inset:5px;border:2px dashed currentColor;opacity:.3;border-radius:9px;pointer-events:none}
+.hc .em{font-size:clamp(2rem,10vw,3.4rem);line-height:1}
+.hc .nb{font-family:var(--display);font-size:clamp(.95rem,4vw,1.35rem);line-height:1.1}
+.hc .ne{font-size:.62rem;font-weight:600;opacity:.8}
+.hc .mult{position:absolute;right:4px;top:4px;z-index:1;background:var(--ink);color:var(--text);border-radius:99px;font-size:.7rem;font-weight:700;padding:0 6px}
+.hc .new{position:absolute;left:50%;top:-11px;transform:translateX(-50%);white-space:nowrap;z-index:2;background:var(--rose);color:#2B0010;border:2px solid var(--ink);border-radius:99px;font-size:.62rem;font-weight:700;padding:0 6px}
+.hc .rib{position:absolute;left:-3px;right:-3px;bottom:-3px;z-index:1;background:var(--sun);color:var(--sun-ink);border:3px solid var(--ink);border-radius:0 0 11px 11px;font-size:.78rem;font-weight:700;padding:1px 0}
+.hc.sel{transform:translateY(-14px);box-shadow:0 12px 0 var(--ink);outline-color:var(--sun)}
+.hc[aria-disabled=true]{cursor:default}
+.hand.c5 .em{font-size:clamp(1.7rem,8.5vw,3rem)}
+.hand.c5 .nb{font-size:clamp(.78rem,3.3vw,1.1rem)}
+.hand.c5 .ne{display:none}
+.hc.flip{animation:drawIn .55s cubic-bezier(.2,.8,.25,1) backwards}
+.hc.sending{animation:send .9s ease-in forwards}
+
+.prog{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin:14px 0 4px;font-weight:600;font-size:.95rem}
+.prog .lead{display:inline-flex;align-items:center;gap:6px}
+.prog .need{color:var(--sun)}
+.pips{display:inline-flex;gap:5px}
+.pips b{width:15px;height:15px;border-radius:50%;border:2px solid var(--c);background:transparent}
+.pips b.on{background:var(--c)}
+
+.drawwrap{display:flex;justify-content:center;margin:12px 0 4px}
+.draw{min-width:min(78vw,300px);padding:14px 22px;font-size:1.3rem;border-radius:18px}
+.draw small{font-size:.9rem}
+.lastinfo{margin-top:14px;background:var(--ink);border-radius:12px;padding:9px 12px;font-size:.88rem;color:var(--muted);display:grid;gap:3px}
+.lastinfo b{color:var(--text);font-size:1.05rem}
+
+#cover{background:linear-gradient(180deg,var(--leaf-2),var(--leaf));backdrop-filter:none;z-index:25}
+.win .rules-list{text-align:left;margin:10px 0 16px;padding-left:1.3em;color:var(--muted)}
+.win .rules-list li{margin:5px 0}
+.win{max-height:calc(100dvh - 40px);overflow:auto}
+.winhands{display:grid;gap:6px;margin:0 0 14px;text-align:left}
+.wh{display:flex;align-items:center;gap:8px;background:var(--ink);border-radius:10px;padding:6px 10px;border:2px solid #1d4a3b}
+.wh.w{border-color:var(--sun);background:#2a2300}
+.wh .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;font-size:.9rem}
+.wh .cs{display:flex;gap:4px}
+.mc{width:30px;height:38px;border-radius:7px;border:2px solid var(--ink);background:var(--c);display:grid;place-items:center;font-size:1.1rem}
+.botrow{display:flex;gap:10px}.botrow>*{flex:1}
+/* ---------- overlay, toast, fx ---------- */
+.overlay{position:fixed;inset:0;background:rgba(7,26,20,.82);display:grid;grid-template-columns:minmax(0,440px);justify-content:center;align-content:center;padding:20px;z-index:20;backdrop-filter:blur(3px)}
+.win{background:var(--panel);border:4px solid var(--sun);border-radius:22px;padding:24px 20px;max-width:440px;width:100%;text-align:center;box-shadow:0 8px 0 var(--ink);animation:pop .6s cubic-bezier(.3,1.5,.5,1)}
+.win .big{font-size:3.4rem;line-height:1}
+.win h2{font-family:var(--display);font-weight:400;font-size:2rem;margin:6px 0 2px;color:var(--sun)}
+.win p{margin:4px 0 14px;color:var(--muted)}
+.win .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.win .btns .btn{flex:1 1 140px}
+#toasts{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:8px;z-index:40;pointer-events:none;padding:0 12px}
+#toasts div{background:var(--ink);border:2px solid var(--sun);color:var(--text);border-radius:12px;padding:8px 14px;font-weight:600;animation:toast .3s ease-out}
+#toasts div.bad{border-color:var(--rose)}
+#busy{position:fixed;inset:0;background:rgba(7,26,20,.75);display:grid;place-items:center;z-index:30;font-weight:700}
+#busy div{background:var(--panel);border:3px solid var(--ink);border-radius:14px;padding:14px 20px;box-shadow:0 5px 0 var(--ink)}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+
+@keyframes drawIn{0%{transform:translate(-120px,-20px) rotateY(95deg) scale(.6);opacity:0}60%{transform:translate(0,0) rotateY(-10deg) scale(1.07);opacity:1}100%{transform:none;opacity:1}}
+@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes ping{0%{transform:scale(1)}30%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes toast{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+@keyframes blink{50%{opacity:.65}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@keyframes send{0%{transform:translateY(-14px)}100%{transform:translate(36px,-110px) rotate(16deg) scale(.6);opacity:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1><span class="bn"><span class="a">আম</span><span class="j">জাম</span><span class="k">কাঁঠাল</span><span class="l">লিচু</span></span>
+      <small>Aam Jam Kanthal Lichi - 4 Match Game</small></h1>
+  </header>
+
+  <!-- ===================== MENU ===================== -->
+  <main id="menu">
+    <div class="modes">
+      <section class="panel online">
+        <h2>🌐 অনলাইন মাল্টিপ্লেয়ার</h2>
+        <p>বন্ধুদের সাথে সরাসরি (peer-to-peer) — রুম বানাও বা কোড দিয়ে ঢোকো। বন্ধু কম পড়লে বট যোগ করা যাবে।</p>
+        <div class="field">তোমার নাম
+          <div class="namerow">
+            <input id="myName" maxlength="14" value="" autocomplete="off" aria-label="তোমার নাম">
+            <button type="button" class="btn alt dice" id="btnRandName" title="নতুন র‍্যান্ডম নাম" aria-label="নতুন র‍্যান্ডম নাম">🎲</button>
+          </div>
+        </div>
+        <label class="field">রুম কোড (ঢোকার জন্য)<input id="roomCode" maxlength="8" placeholder="যেমন K7QX2" autocapitalize="characters" autocomplete="off"></label>
+        <div class="row2">
+          <button class="btn rose" id="goHost"><span>Create Room</span><small>রুম বানাও</small></button>
+          <button class="btn" id="goJoin"><span>Join Room</span><small>রুমে ঢোকো</small></button>
+        </div>
+        <div class="net-note">৪ থেকে ৮ জন। বন্ধু কম পড়লে হোস্ট বট যোগ করে নিতে পারে।</div>
+      </section>
+    </div>
+
+    <details class="rules">
+      <summary>খেলার নিয়ম</summary>
+      <ol>
+        <li>কমপক্ষে ৪ জন খেলোয়াড়। প্রত্যেকে ৪টি করে কার্ড পায়। ফল থাকে খেলোয়াড়ের সংখ্যার সমান (৪ জনে আম, জাম, কাঁঠাল, লিচু), প্রতিটি ফলের ৪টি কার্ড। শুরুতে কেউ ৪টি একই ফল পায় না।</li>
+        <li>নিজের পালায় একটি কার্ড বেছে পাশের জনকে দাও (কাকে দিচ্ছ, স্ক্রিনে লেখা থাকে)। সে ৫টি কার্ড পায়, তারপর তার পালায় একটি কার্ড দেয়। এভাবে কার্ড ঘুরতে থাকে।</li>
+        <li>কারও হাতের কার্ড অন্যরা দেখতে পায় না। যে কার্ডটি হাতবদল হলো, সেটা শুধু যে দিল আর যে পেল — এই দুজনই জানে।</li>
+        <li>যার হাতে আগে একই ফলের ৪টি কার্ড মিলবে, কার্ড পাওয়ামাত্র সে জিতবে।</li>
+      </ol>
+    </details>
+  </main>
+
+  <!-- ===================== LOBBY ===================== -->
+  <main id="lobby" hidden>
+    <section class="panel online lobby">
+      <h2 id="lobbyTitle">অপেক্ষাকক্ষ</h2>
+      <p class="code" id="lobbyCode" aria-label="রুম কোড"></p>
+      <div class="row2" id="inviteRow"><button class="btn ghost" id="btnCopy"><span>Copy invite link</span><small>লিংক কপি</small></button></div>
+      <ul class="plist" id="lobbyList"></ul>
+      <div class="botrow" id="botRow">
+        <button class="btn ghost" id="btnAddBot"><span>+ বট</span><small>বট যোগ করো</small></button>
+        <button class="btn ghost" id="btnDelBot"><span>− বট</span><small>বট কমাও</small></button>
+      </div>
+      <p id="lobbyHint"></p>
+      <div class="row2">
+        <button class="btn alt" id="btnStart"><span>Start Game</span><small>খেলা শুরু</small></button>
+        <button class="btn ghost" id="btnLeave"><span>Leave</span><small>বেরিয়ে যাও</small></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== GAME ===================== -->
+  <main id="game" hidden>
+    <div class="bar">
+      <div class="status" id="status" aria-live="polite"></div>
+      <div class="bar-btns">
+        <button class="btn ghost" id="btnRules"><span>❓ নিয়ম</span></button>
+        <button class="btn alt" id="btnRestart"><span>Restart Game</span></button>
+        <button class="btn ghost" id="btnMode"><span>Mode Switch</span></button>
+      </div>
+    </div>
+
+    <div class="banner" id="banner" aria-live="polite"></div>
+
+    <div class="ring" id="ring"></div>
+    <p class="ringcap">কার্ড এই দিকে ঘোরে ➜ (শেষজন আবার প্রথমজনকে দেয়)</p>
+
+    <section class="mine">
+      <h3 id="mineTitle"></h3>
+      <div class="hand" id="hand"></div>
+      <div class="prog" id="prog"></div>
+      <div class="drawwrap" id="giveWrap">
+        <button class="btn draw" id="btnGive"><span id="giveMain"></span><small id="giveSub"></small></button>
+      </div>
+      <div class="lastinfo" id="lastInfo" hidden></div>
+    </section>
+  </main>
+</div>
+
+<!-- pass & play: hand-over screen (opaque, so nobody sees the next hand early) -->
+<div class="overlay" id="cover" hidden role="dialog" aria-modal="true" aria-labelledby="coverTitle">
+  <div class="win">
+    <div class="big">📱</div>
+    <h2 id="coverTitle"></h2>
+    <p id="coverSub">বাকিরা স্ক্রিনের দিকে তাকিও না।</p>
+    <div class="btns"><button class="btn" id="coverGo"><span id="coverBtn"></span><small>কার্ড দেখাও</small></button></div>
+  </div>
+</div>
+
+<div class="overlay" id="rulesBox" hidden role="dialog" aria-modal="true" aria-labelledby="rulesTitle">
+  <div class="win">
+    <h2 id="rulesTitle">খেলার নিয়ম</h2>
+    <ol class="rules-list">
+      <li>প্রত্যেকের হাতে ৪টি কার্ড। লক্ষ্য: একই ফলের ৪টি কার্ড আগে জমানো।</li>
+      <li>নিজের পালায় একটি কার্ড বেছে পাশের জনকে দাও। সে ৫টি কার্ড পায়, তারপর সে একটি কার্ড পাশের জনকে দেয়।</li>
+      <li>অন্যের হাতের কার্ড দেখা যায় না। হাতবদল হওয়া কার্ড শুধু যে দিল আর যে পেল, তারাই দেখে।</li>
+      <li>কার্ড পেয়ে যার ৪টি একই ফল মিলবে, সে সঙ্গে সঙ্গে জিতবে।</li>
+    </ol>
+    <div class="btns"><button class="btn" id="rulesClose"><span>বুঝেছি</span></button></div>
+  </div>
+</div>
+
+<div class="overlay" id="winBox" hidden role="dialog" aria-modal="true" aria-labelledby="winTitle">
+  <div class="win">
+    <div class="big" id="winEmoji">🎉</div>
+    <h2 id="winTitle"></h2>
+    <p id="winSub"></p>
+    <div class="winhands" id="winHands"></div>
+    <div class="btns">
+      <button class="btn" id="winRestart"><span>Play Again</span><small>আবার খেলো</small></button>
+      <button class="btn ghost" id="winMode"><span>Mode Switch</span></button>
+    </div>
+  </div>
+</div>
+<div id="busy" hidden><div id="busyMsg"></div></div>
+<div id="toasts" aria-live="polite"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+/* ===== LOCAL NET SHIM: replaces the Supabase Realtime client; talks to server.js over WebSocket ===== */
+(function(){
+  const WS_URL=(location.protocol==='https:'?'wss://':'ws://')+(location.host||'localhost:3000');
+  let ws=null,wsP=null,reqId=0,rt=null;
+  const pending=new Map(),chans=new Map();
+  const sendRaw=o=>{if(ws&&ws.readyState===1){ws.send(JSON.stringify(o));return true;}return false;};
+  function scheduleReconnect(){
+    if(rt||!chans.size)return;
+    rt=setTimeout(()=>{rt=null;connect().catch(scheduleReconnect);},2000);
+  }
+  function connect(){
+    if(wsP)return wsP;
+    wsP=new Promise((res,rej)=>{
+      let w,opened=false;
+      try{w=new WebSocket(WS_URL);}catch(e){wsP=null;return rej(e);}
+      w.onopen=()=>{opened=true;ws=w;res();for(const c of chans.values())c._join();};
+      w.onmessage=ev=>{let m;try{m=JSON.parse(ev.data);}catch(e){return;}onMsg(m);};
+      w.onerror=()=>{};
+      w.onclose=()=>{
+        if(ws===w)ws=null;
+        wsP=null;
+        if(!opened)return rej(new Error('Local server not reachable'));
+        for(const c of chans.values()){c._joinedOn=null;c._status('CLOSED');}
+        for(const r of pending.values())r({data:null,error:{message:'Connection lost'}});
+        pending.clear();
+        scheduleReconnect();
+      };
+    });
+    return wsP;
+  }
+  function onMsg(m){
+    const ch=chans.get(m.topic);
+    if(m.op==='joined'){if(ch)ch._status('SUBSCRIBED');}
+    else if(m.op==='presence'){
+      if(!ch)return;ch._state=m.state||{};
+      for(const h of ch._h.presence)if(h.ev==='sync'){try{h.cb();}catch(e){console.error(e);}}
+    }else if(m.op==='bc'){
+      if(!ch)return;
+      for(const h of ch._h.broadcast)if(!h.ev||h.ev===m.event){try{h.cb({type:'broadcast',event:m.event,payload:m.payload});}catch(e){console.error(e);}}
+    }else if(m.op==='res'){
+      const r=pending.get(m.id);if(r){pending.delete(m.id);r({data:m.data,error:m.error});}
+    }
+  }
+  function makeChannel(topic,opts){
+    const cfg=(opts&&opts.config)||{};
+    const key=(cfg.presence&&cfg.presence.key)||('c'+Math.random().toString(36).slice(2));
+    return{
+      topic,_cb:null,_payload:null,_state:{},_joinedOn:null,_h:{presence:[],broadcast:[]},
+      on(type,filter,cb){
+        const ev=filter&&filter.event;
+        if(type==='presence')this._h.presence.push({ev,cb});
+        else if(type==='broadcast')this._h.broadcast.push({ev,cb});
+        return this;
+      },
+      subscribe(cb){
+        this._cb=cb||null;chans.set(topic,this);
+        connect().then(()=>this._join()).catch(()=>{this._status('CHANNEL_ERROR');scheduleReconnect();});
+        return this;
+      },
+      _join(){
+        if(this._joinedOn===ws||!ws)return;
+        this._joinedOn=ws;
+        sendRaw({op:'join',topic,key});
+        if(this._payload!==null)sendRaw({op:'track',topic,payload:this._payload});
+      },
+      _status(s){if(this._cb){try{this._cb(s);}catch(e){console.error(e);}}},
+      track(payload){this._payload=payload;sendRaw({op:'track',topic,payload});return Promise.resolve('ok');},
+      untrack(){this._payload=null;return Promise.resolve('ok');},
+      presenceState(){return this._state;},
+      send(msg){sendRaw({op:'bc',topic,event:msg&&msg.event,payload:msg&&msg.payload});return Promise.resolve('ok');},
+      unsubscribe(){return client.removeChannel(this);}
+    };
+  }
+  function rpc(o){
+    return connect().then(()=>new Promise(res=>{
+      const id=++reqId;o.id=id;pending.set(id,res);
+      if(!sendRaw(o)){pending.delete(id);return res({data:null,error:{message:'Not connected'}});}
+      setTimeout(()=>{if(pending.delete(id))res({data:null,error:{message:'Timed out'}});},8000);
+    })).catch(()=>({data:null,error:{message:'Local server not reachable'}}));
+  }
+  const client={
+    channel:(t,o)=>makeChannel(t,o),
+    removeChannel(ch){
+      if(!ch)return Promise.resolve('ok');
+      sendRaw({op:'leave',topic:ch.topic});
+      ch._cb=null;
+      if(chans.get(ch.topic)===ch)chans.delete(ch.topic);
+      return Promise.resolve('ok');
+    },
+    from(){
+      return{
+        insert:row=>rpc({op:'score_add',row}),
+        select(){const q={_n:15};q.order=()=>q;q.limit=n=>{q._n=n;return q;};q.then=(a,b)=>rpc({op:'score_top',n:q._n}).then(a,b);return q;}
+      };
+    }
+  };
+  window.supabase={createClient:()=>client};
+})();
+</script>
+<script>
+/*CORE-START*/
+/* ===================== GAME CORE (no DOM) ===================== */
+const FRUITS=[
+  {id:0,key:'mango',  bn:'আম',    en:'Mango',     emoji:'🥭'},
+  {id:1,key:'jamun',  bn:'জাম',   en:'Jamun',     emoji:'🫐'},
+  {id:2,key:'kanthal',bn:'কাঁঠাল',en:'Jackfruit', emoji:'🍈'},
+  {id:3,key:'lichi',  bn:'লিচু',  en:'Litchi',    emoji:'🍓'},
+  {id:4,key:'peyara', bn:'পেয়ারা',en:'Guava',     emoji:'🍐'},
+  {id:5,key:'kola',   bn:'কলা',   en:'Banana',    emoji:'🍌'},
+  {id:6,key:'anaras', bn:'আনারস', en:'Pineapple', emoji:'🍍'},
+  {id:7,key:'tormuj', bn:'তরমুজ', en:'Watermelon',emoji:'🍉'}
+];
+const MIN_P=4,MAX_P=8;                       // players = number of fruit kinds, 4 cards of each kind
+const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const hasFour=h=>{const c={};for(const f of h)if((c[f]=(c[f]||0)+1)>=4)return true;return false;};
+
+/* Deal 4 cards each; re-deal until nobody starts with 4 of a kind. A random seat passes first. */
+function mkGame(players){
+  const n=players.length;let hands;
+  do{
+    const deck=[];for(let f=0;f<n;f++)for(let i=0;i<4;i++)deck.push(f);shuffle(deck);
+    hands=players.map((_,s)=>deck.slice(s*4,s*4+4).sort((a,b)=>a-b));
+  }while(hands.some(hasFour));
+  return{players:players.map(p=>({name:p.name,kind:p.kind,target:-1})),hands,
+    turn:Math.floor(Math.random()*n),passes:0,last:null,
+    priv:players.map(()=>({gave:null,got:null})),over:null};
+}
+/* The player whose turn it is passes card #i of their hand to the next seat.
+   Only the passer and the receiver learn which card it was (priv); everyone else sees just "A → B". */
+function pass(g,seat,i){
+  if(g.over||seat!==g.turn)return false;
+  const h=g.hands[seat];
+  if(!Number.isInteger(i)||i<0||i>=h.length)return false;
+  const n=g.players.length,r=(seat+1)%n,[f]=h.splice(i,1);
+  g.hands[r].push(f);g.hands[r].sort((a,b)=>a-b);
+  g.priv[seat].gave={f,to:r};g.priv[r].got={f,from:seat};
+  g.last={from:seat,to:r};g.passes++;
+  if(hasFour(g.hands[r]))g.over={winners:[r],hands:g.hands.map(x=>x.slice())};
+  else g.turn=r;
+  return true;
+}
+/* Bot: collect the most common fruit, pass the least useful card. */
+function botChoose(g,s){
+  const h=g.hands[s],cnt=new Array(g.players.length).fill(0);h.forEach(f=>cnt[f]++);
+  const p=g.players[s],mx=Math.max(...cnt);
+  if(p.target<0||cnt[p.target]<mx){const best=[];cnt.forEach((c,f)=>{if(c===mx)best.push(f);});p.target=best[Math.floor(Math.random()*best.length)];}
+  let cand=[],mn=99;
+  h.forEach((f,i)=>{if(f===p.target)return;if(cnt[f]<mn){mn=cnt[f];cand=[i];}else if(cnt[f]===mn)cand.push(i);});
+  return cand.length?cand[Math.floor(Math.random()*cand.length)]:0;
+}
+/* What ONE seat is allowed to see. seat=-1 → nobody's hand (hand-over screen). */
+function viewFor(g,seat){
+  const n=g.players.length,me=seat>=0&&seat<n,pv=me?g.priv[seat]:null;
+  return{n,turn:g.turn,passes:g.passes,you:me?seat:-1,over:g.over?{winners:g.over.winners.slice(),hands:g.over.hands.map(h=>h.slice())}:null,
+    players:g.players.map((p,i)=>({name:p.name,kind:p.kind,cards:g.hands[i].length})),
+    last:g.last?{from:g.last.from,to:g.last.to}:null,
+    hand:me?g.hands[seat].slice():null,
+    gave:pv&&pv.gave?{f:pv.gave.f,to:g.players[pv.gave.to].name}:null,
+    got:pv&&pv.got?{f:pv.got.f,from:g.players[pv.got.from].name}:null};
+}
+/*CORE-END*/
+
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const uid=()=>Math.random().toString(36).slice(2,8);
+const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===================== NETWORK CONFIG ===================== */
+const SUPABASE_URL='https://vjegnjsbblxpxozsjfvn.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZWduanNiYmx4cHhvenNqZnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5MTMxODgsImV4cCI6MjEwNjQ4OTE4OH0.P50JnqCk-2NXSm7_HNsBA0KhHXvd40w68DGlNXA7CUI'; // public anon key — safe in a web page
+const SB_CDN=[]; // offline build: the local shim replaces Supabase
+const ROOM_TOPIC='aamjam-lichi:v1:room:';
+/* STUN (Google + Cloudflare) finds each player's public address for a direct WebRTC link.
+   evan-brass is a free community TURN relay, used only if a direct link is impossible. */
+const ICE=[]; // LAN only: no STUN/TURN needed
+
+/* ===================== STATE ===================== */
+let mode=null;          // 'solo' | 'pass' | 'host' | 'client'
+let G=null;             // authoritative game (solo, pass, host)
+let V=null;             // the view this screen may show: only ONE seat's cards
+let mySeat=-1,picked=null,giving=false,renderedKey='',renderedPasses=-1,winShown=false,winT=0,botT=0,givingT=0;
+let hot=null;           // pass & play: {seat, phase:'cover'|'pick'}
+let H=null;             // host room: {code,name,ch,peers:Map,bots}
+let C=null;             // client connection: {code,id,pc,dc,ch,lobby}
+let sb=null;
+
+/* ===================== UI HELPERS ===================== */
+function show(id){for(const s of['menu','lobby','game'])$(s).hidden=s!==id;}
+function toast(msg,bad){const d=document.createElement('div');d.textContent=msg;if(bad)d.className='bad';$('toasts').appendChild(d);setTimeout(()=>d.remove(),bad?5000:2600);}
+function busy(msg){$('busy').hidden=!msg;if(msg)$('busyMsg').textContent=msg;}
+const BN_FIRST=['রহিম','করিম','জামাল','কামাল','আরিফ','সাকিব','তামিম','মুশফিক','রাকিব','হাসান','ফাহিম','নাঈম','শুভ','সজীব','রাফি','তানভীর','মেহেদী','ইমরান','সোহেল','রুবেল','আকাশ','অর্ণব','অনিক','অভি','রনি','সৌরভ','দীপ','তন্ময়','প্রদীপ','রাজু','মিঠুন','বাপ্পি','সুমন','রাহুল','নিলয়','ফারহান','আয়মান','ইফতি','সাদ','তৌহিদ','ফাতিমা','আয়েশা','সুমাইয়া','তানিয়া','নুসরাত','মেহজাবীন','জান্নাত','রুমানা','সাবিনা','শিউলি','মৌসুমী','তিথি','ঋতু','পূজা','শারমিন','নাজমা','ফারিয়া','মিম','নিঝুম','প্রীতি','লিপি','বন্যা','স্বপ্না','রিমা','অন্তরা','ইশিতা'];
+const BN_LAST=['আহমেদ','হোসেন','ইসলাম','খান','চৌধুরী','রহমান','সরকার','দাস','রায়','মিয়া','শেখ','তালুকদার','বিশ্বাস','দত্ত','সাহা','মণ্ডল','পাল','ঘোষ','বসু','মজুমদার'];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function randBnName(){
+  for(let t=0;t<12;t++){
+    const n=Math.random()<.55?pick(BN_FIRST)+' '+pick(BN_LAST):pick(BN_FIRST);
+    if(n.length<=14)return n;
+  }
+  return pick(BN_FIRST);
+}
+function getName(){return($('myName').value||'').trim().slice(0,14)||randBnName();}
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const BOT_NAMES=shuf(BN_FIRST);
+const emo=f=>FRUITS[f].emoji+' '+FRUITS[f].bn;
+const botName=i=>{let n=BOT_NAMES[(i-1)%BOT_NAMES.length];if(n===($('myName').value||'').trim())n=BOT_NAMES[(i+7)%BOT_NAMES.length];return n+' 🤖';};
+
+/* ===================== CONFETTI ===================== */
+const fx=$('fx'),cx=fx.getContext('2d');let parts=[],raf=0;
+const COLS=['#F6B400','#BFA0FF','#8CB93B','#FF5C8A','#3DD6A0','#FFFFFF'];
+function sizeFx(){const d=window.devicePixelRatio||1;fx.width=innerWidth*d;fx.height=innerHeight*d;cx.setTransform(d,0,0,d,0,0);}
+addEventListener('resize',sizeFx);sizeFx();
+function burst(n,x,y,spread){
+  if(RM)n=Math.ceil(n/4);
+  for(let i=0;i<n;i++){
+    const a=-Math.PI/2+(Math.random()-.5)*(spread||Math.PI*1.2),s=4+Math.random()*9;
+    parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,w:6+Math.random()*7,h:4+Math.random()*6,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:COLS[i%COLS.length]});
+  }
+  if(!raf)raf=requestAnimationFrame(tickFx);
+}
+function tickFx(){
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  parts=parts.filter(p=>p.y<innerHeight+30);
+  for(const p of parts){
+    p.vy+=.22;p.vx*=.992;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();
+  }
+  raf=parts.length?requestAnimationFrame(tickFx):0;
+  if(!raf)cx.clearRect(0,0,innerWidth,innerHeight);
+}
+let celT=0;
+function stopFx(){clearInterval(celT);parts=[];}
+function celebrate(){
+  let k=0;clearInterval(celT);const t=celT=setInterval(()=>{
+    burst(70,Math.random()*innerWidth,innerHeight*.9,Math.PI*1.1);
+    burst(40,innerWidth*.5,innerHeight*.35,Math.PI*2);
+    if(++k>=5)clearInterval(t);
+  },380);
+}
+
+/* ===================== RENDER ===================== */
+function canGive(){
+  return !!V&&!V.over&&!giving&&V.you>=0&&V.turn===V.you&&
+    (mode==='solo'||mode==='host'||mode==='client'||(mode==='pass'&&!!hot&&hot.phase==='pick'));
+}
+function updateGive(){
+  const wrap=$('giveWrap'),b=$('btnGive');
+  const mine=!!V&&!V.over&&V.you>=0&&V.turn===V.you;
+  wrap.hidden=!mine;if(!mine)return;
+  const nxt=V.players[(V.you+1)%V.n].name;
+  b.setAttribute('aria-disabled',picked!=null&&canGive()?'false':'true');
+  $('giveMain').textContent=picked==null?'আগে একটি কার্ড বেছে নাও':'Pass Card';
+  $('giveSub').textContent=picked==null?'কার্ডে ট্যাপ করো':'এই কার্ডটি '+nxt+'-কে দাও';
+}
+function updateCover(){
+  const on=mode==='pass'&&!!G&&!G.over&&!!hot&&hot.phase==='cover';
+  $('cover').hidden=!on;
+  if(!on)return;
+  const nm=G.players[hot.seat].name;
+  $('coverTitle').textContent='ফোনটা '+nm+'-কে দাও';
+  $('coverBtn').textContent='আমি '+nm;
+  $('coverSub').textContent=(G.passes===0?'খেলা শুরু! ':'')+'বাকিরা স্ক্রিনের দিকে তাকিও না।';
+  $('coverGo').focus();
+}
+function render(){
+  if(!V)return;
+  const n=V.n,me=V.you,myTurn=me>=0&&V.turn===me;
+  const key=V.passes+':'+me,fresh=me>=0&&key!==renderedKey;
+  if(fresh){renderedKey=key;picked=null;giving=false;clearTimeout(givingT);}
+  const passFresh=V.passes!==renderedPasses;renderedPasses=V.passes;
+
+  $('status').innerHTML='<span class="chip">পাস '+bn(V.passes)+'</span><span class="chip">'+bn(n)+' জন</span>';
+
+  /* banner: always says what to do now */
+  const cur=V.players[V.turn],curN=esc(cur.name),nxtN=esc(V.players[(V.turn+1)%n].name);
+  let b,sub='',cls='';
+  if(V.over)b='🏁 খেলা শেষ!';
+  else if(me<0)b='📱 ফোন হাতবদল হচ্ছে…';
+  else if(myTurn){
+    b='👉 একটি কার্ড বেছে <u>'+nxtN+'</u>-কে দাও';cls=' go';
+    sub=mode==='pass'?esc(cur.name)+'-এর পালা':(V.passes===0?'তুমিই প্রথম — ৪টি কার্ড থেকে একটি দাও':'একই ফলের ৪টি জমাতে যেটা লাগবে না, সেটা দাও');
+  }else{
+    b=cur.kind==='bot'?'🤖 '+curN+' ভাবছে…':'⏳ '+curN+'-এর পালা';
+    if(V.gave&&V.last&&V.last.from===me)sub='✅ তুমি '+emo(V.gave.f)+' দিয়েছ → '+esc(V.gave.to);
+    else if(V.last)sub=esc(V.players[V.last.from].name)+' ➜ '+esc(V.players[V.last.to].name)+' কার্ড দিয়েছে (কোনটা, শুধু ওরা দুজন জানে)';
+  }
+  const bn_=$('banner');bn_.className='banner'+cls;bn_.innerHTML=b+(sub?'<small>'+sub+'</small>':'');
+
+  /* seats, in passing order; I am first so "who gets my card" is always the next one */
+  const order=[...Array(n).keys()].map(k=>me>=0?(me+k)%n:k),toSeat=myTurn?(me+1)%n:-1;
+  $('ring').innerHTML=order.map((s,k)=>{
+    const p=V.players[s],isTurn=!V.over&&s===V.turn,isMe=s===me,isGot=passFresh&&!!V.last&&V.last.to===s;
+    const tag=isTurn?'<span class="tag turn">'+(isMe?'তোমার পালা':'পালা')+'</span>'
+      :isMe?'<span class="tag you">তুমি</span>':s===toSeat?'<span class="tag to">তুমি দাও ➜</span>':'';
+    return '<div class="seat'+(isMe?' me':'')+(isTurn?' turn':'')+(isGot?' got':'')+'">'+tag
+      +'<div class="nm">'+esc(p.name)+'</div><div class="mini" aria-hidden="true">'+'<i></i>'.repeat(p.cards)+'</div>'
+      +'<span class="st">'+bn(p.cards)+'টি কার্ড</span></div>'+(k<n-1?'<span class="arrow" aria-hidden="true">➜</span>':'');
+  }).join('');
+
+  /* my private hand */
+  const hand=V.hand;
+  $('mineTitle').innerHTML=me<0?'🔒 কার্ড লুকানো আছে'
+    :(mode==='pass'?esc(V.players[me].name)+'-এর কার্ড':'তোমার কার্ড')+'<span class="lock">🔒 শুধু তুমি দেখছ</span>';
+  const hd=$('hand');
+  if(!hand){
+    hd.className='hand';hd.style.setProperty('--cols',4);
+    hd.innerHTML='<div class="ph">কার্ড লুকানো — ফোন যার পালা তার হাতে দাও</div>';$('prog').innerHTML='';
+  }else{
+    const cnt={};hand.forEach(f=>cnt[f]=(cnt[f]||0)+1);
+    const act=canGive(),justGot=!!V.got&&!!V.last&&V.last.to===me&&(V.turn===me||!!V.over);
+    const nIdx=justGot?hand.indexOf(V.got.f):-1;
+    hd.className='hand'+(hand.length>4?' c5':'');hd.style.setProperty('--cols',hand.length);
+    hd.innerHTML=hand.map((f,i)=>{
+      const x=FRUITS[f],s=picked===i&&act;
+      return '<button type="button" class="hc f-'+x.key+(s?' sel':'')+(fresh&&i===nIdx?' flip':'')+'" data-i="'+i+'" aria-pressed="'+s+'" aria-disabled="'+(act?'false':'true')+'" aria-label="'+x.bn+(cnt[f]>1?' — '+bn(cnt[f])+'টি':'')+'">'
+        +(i===nIdx?'<span class="new">নতুন</span>':'')+(cnt[f]>1?'<span class="mult">×'+bn(cnt[f])+'</span>':'')
+        +'<span class="em">'+x.emoji+'</span><span class="nb">'+x.bn+'</span><span class="ne">'+x.en+'</span>'
+        +(s?'<span class="rib">দেবে ➜</span>':'')+'</button>';
+    }).join('');
+    let bf=hand[0];hand.forEach(f=>{if(cnt[f]>cnt[bf])bf=f;});
+    const c=cnt[bf],x=FRUITS[bf];
+    $('prog').innerHTML='<span class="lead f-'+x.key+'"><span>'+x.emoji+'</span> '+x.bn+' '+bn(c)+'/'+bn(4)
+      +' <span class="pips">'+[0,1,2,3].map(k=>'<b class="'+(k<c?'on':'')+'"></b>').join('')+'</span></span>'
+      +'<span class="need">'+(c>=4?'🎉 ৪টি মিলে গেছে!':c===3?'আর ১টি হলেই জয়! 🔥':'আর '+bn(4-c)+'টি দরকার')+'</span>';
+  }
+  updateGive();
+
+  /* what only I know about the last swaps */
+  const lines=[];
+  if(V.got)lines.push('⬅ তুমি পেয়েছ <b>'+emo(V.got.f)+'</b> ← '+esc(V.got.from));
+  if(V.gave)lines.push('➜ তুমি দিয়েছ <b>'+emo(V.gave.f)+'</b> → '+esc(V.gave.to));
+  const li=$('lastInfo');li.hidden=!lines.length;
+  if(lines.length)li.innerHTML='<div>🔒 শুধু তুমি আর যার সাথে লেনদেন হলো, সে-ই কার্ডটা জানে</div>'+lines.map(d=>'<div>'+d+'</div>').join('');
+
+  /* restart button: only the host/local may restart */
+  const rs=$('btnRestart');rs.setAttribute('aria-disabled',mode==='client'?'true':'false');
+  rs.title=mode==='client'?'শুধু হোস্ট রিস্টার্ট করতে পারে':'';
+  $('winRestart').setAttribute('aria-disabled',mode==='client'?'true':'false');
+
+  updateCover();
+  if(V.over&&!winShown){winShown=true;clearTimeout(winT);winT=setTimeout(showWin,passFresh?1000:0);}
+  if(!V.over&&(winShown||!$('winBox').hidden)){winShown=false;clearTimeout(winT);$('winBox').hidden=true;}
+}
+function showWin(){
+  if(!V||!V.over)return;
+  const w=V.over.winners[0],name=V.players[w].name,mine=V.you===w&&mode!=='pass';
+  const wh=V.over.hands[w],cnt={};wh.forEach(x=>cnt[x]=(cnt[x]||0)+1);
+  const wf=+Object.keys(cnt).find(k=>cnt[k]>=4);
+  $('winEmoji').textContent=mine?'🏆':'🎉';
+  $('winTitle').textContent=mine?'তুমি জিতেছ!':name+' জিতেছে!';
+  $('winSub').textContent=(mine?'তুমি':name)+' ৪টি '+FRUITS[wf].emoji+' '+FRUITS[wf].bn+(mine?' মিলিয়েছ':' মিলিয়েছে')+' — সবার কার্ড নিচে দেখো।';
+  $('winHands').innerHTML=V.over.hands.map((h,i)=>'<div class="wh'+(i===w?' w':'')+'"><span class="nm">'+esc(V.players[i].name)+(i===V.you&&V.players[i].name!=='তুমি'?' (তুমি)':'')+'</span><span class="cs">'
+    +h.map(x=>'<span class="mc f-'+FRUITS[x].key+'">'+FRUITS[x].emoji+'</span>').join('')+'</span></div>').join('');
+  $('winBox').hidden=false;celebrate();
+}
+
+/* ===================== AUTHORITATIVE GAME FLOW ===================== */
+function pushView(){
+  if(!G)return;
+  if(mode==='pass')mySeat=hot&&hot.phase==='pick'?hot.seat:-1;
+  V=viewFor(G,mySeat);render();
+  if(mode==='host')broadcast();
+}
+function doPass(seat,i){
+  if(!G||!pass(G,seat,i))return false;
+  if(mode==='pass')hot=G.over?null:{seat:G.turn,phase:'cover'};
+  pushView();scheduleBot();return true;
+}
+function scheduleBot(){
+  clearTimeout(botT);
+  if(!G||G.over)return;
+  const s=G.turn;
+  if(G.players[s].kind==='bot')botT=setTimeout(()=>{
+    if(G&&!G.over&&G.turn===s&&G.players[s].kind==='bot')doPass(s,botChoose(G,s));
+  },900+Math.random()*700);
+}
+function newGame(players){
+  clearTimeout(botT);G=mkGame(players);winShown=false;renderedKey='';renderedPasses=-1;picked=null;giving=false;
+  if(mode==='pass')hot={seat:G.turn,phase:'cover'};
+  show('game');pushView();scheduleBot();
+}
+function startLocal(m,players){
+  leaveAll();mode=m;mySeat=m==='solo'?0:-1;
+  newGame(players);
+}
+function restartGame(){
+  if(mode==='client'||!G)return;
+  if(!G.over&&!confirm('চলতি খেলা বাদ দিয়ে নতুন করে শুরু করবে?'))return;
+  newGame(G.players.map(p=>({name:p.name,kind:p.kind})));
+}
+function onGive(){
+  if(!canGive()||picked==null)return;
+  const i=picked,seat=V.you,card=$('hand').children[i];
+  giving=true;if(card&&!RM)card.classList.add('sending');updateGive();
+  setTimeout(()=>{
+    if(mode==='client'){
+      try{C.dc.send(JSON.stringify({t:'pass',i}));}catch(e){}
+      clearTimeout(givingT);givingT=setTimeout(()=>{giving=false;render();},4000);   // safety unlock if the reply is lost
+    }else{giving=false;doPass(seat,i);}
+  },RM?0:380);
+}
+function inActiveGame(){return !!((G&&!G.over)||(mode==='client'&&V&&!V.over));}
+function askLeave(){if(inActiveGame()&&!confirm('চলতি খেলা ছেড়ে বেরিয়ে যাবে?'))return;toMenu();}
+
+/* ===================== NETWORK: SIGNALLING + WEBRTC ===================== */
+const slim=sdp=>sdp.split(/\r?\n/).filter(l=>l&&!/^a=candidate:.* tcp /i.test(l)).join('\r\n')+'\r\n';
+function iceSummary(pc){
+  const sdp=(pc.localDescription&&pc.localDescription.sdp)||'';
+  const n=t=>(sdp.match(new RegExp('a=candidate:.* typ '+t+'\\b','g'))||[]).length;
+  console.log('[aamjam] ICE candidates: host '+n('host')+', stun '+n('srflx')+', relay '+n('relay'));
+}
+function waitIce(pc,ms=4000){
+  return new Promise(res=>{
+    if(pc.iceGatheringState==='complete'){iceSummary(pc);return res();}
+    let t;const done=()=>{pc.removeEventListener('icegatheringstatechange',chk);clearTimeout(t);iceSummary(pc);res();};
+    const chk=()=>{if(pc.iceGatheringState==='complete')done();};
+    pc.addEventListener('icegatheringstatechange',chk);t=setTimeout(done,ms);
+  });
+}
+function loadScript(u){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=u;s.onload=res;s.onerror=()=>rej(new Error('load '+u));document.head.appendChild(s);});}
+async function connectOnline(){
+  if(!(window.supabase&&window.supabase.createClient)){
+    for(const u of SB_CDN){try{await loadScript(u);if(window.supabase&&window.supabase.createClient)break;}catch(e){}}
+  }
+  if(!(window.supabase&&window.supabase.createClient))throw new Error('অনলাইন সার্ভিস লোড হয়নি। ইন্টারনেট ঠিক আছে কিনা দেখো।');
+  if(!sb)sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false},realtime:{params:{eventsPerSecond:20}}});
+}
+function openRoomCh(code,onSig){
+  return new Promise((res,rej)=>{
+    const ch=sb.channel(ROOM_TOPIC+code,{config:{broadcast:{self:false,ack:false}}});
+    ch.on('broadcast',{event:'sig'},m=>{try{onSig((m&&m.payload)||{});}catch(e){console.warn('sig error',e);}});
+    let done=false,tm;
+    const fail=msg=>{if(done)return;done=true;clearTimeout(tm);try{sb.removeChannel(ch);}catch(e){}rej(new Error(msg));};
+    tm=setTimeout(()=>fail('রুমের চ্যানেল খোলা যায়নি।'),10000);
+    ch.subscribe(s=>{
+      if(s==='SUBSCRIBED'){if(!done){done=true;clearTimeout(tm);res(ch);}}
+      else if(s==='CHANNEL_ERROR'||s==='TIMED_OUT'||s==='CLOSED')fail('রুমের চ্যানেলে সমস্যা ('+s+')।');
+    });
+  });
+}
+const sigSend=(ch,payload)=>{try{return Promise.resolve(ch.send({type:'broadcast',event:'sig',payload})).catch(()=>{});}catch(e){return Promise.resolve();}};
+const makeCode=()=>{const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<5;i++)s+=A[Math.floor(Math.random()*A.length)];return s;};
+
+function leaveAll(){
+  clearTimeout(botT);clearTimeout(winT);clearTimeout(givingT);stopFx();
+  const h=H,c=C;H=null;C=null;
+  if(h){for(const p of h.peers.values()){try{p.dc&&p.dc.close();p.pc&&p.pc.close();}catch(e){}}try{sb&&h.ch&&sb.removeChannel(h.ch);}catch(e){}}
+  if(c){try{c.dc&&c.dc.close();c.pc&&c.pc.close();}catch(e){}try{sb&&c.ch&&sb.removeChannel(c.ch);}catch(e){}}
+  G=null;V=null;mode=null;mySeat=-1;hot=null;picked=null;giving=false;renderedKey='';renderedPasses=-1;winShown=false;
+  $('winBox').hidden=true;$('cover').hidden=true;$('rulesBox').hidden=true;busy(null);
+}
+function toMenu(){leaveAll();show('menu');}
+
+/* ---------- host ---------- */
+async function createRoom(){
+  const name=getName();busy('রুম বানানো হচ্ছে…');
+  try{
+    await connectOnline();leaveAll();busy('রুম বানানো হচ্ছে…');
+    const code=makeCode();
+    const h=H={code,name,ch:null,peers:new Map(),bots:0};mode='host';mySeat=0;
+    const ch=await openRoomCh(code,onHostSig);
+    if(H!==h){try{sb.removeChannel(ch);}catch(e){}return;}
+    h.ch=ch;busy(null);show('lobby');renderLobby();
+  }catch(e){leaveAll();toast(e.message,true);}
+}
+const openPeers=()=>H?[...H.peers.values()].filter(p=>p.open):[];
+function uniqueName(n){
+  const taken=new Set([H.name,...[...H.peers.values()].map(p=>p.name)]);
+  let out=n,i=2;while(taken.has(out))out=n+' '+bn(i++);return out;
+}
+function onHostSig(m){if(m&&m.k==='o'&&m.f)handleOffer(m);}
+async function handleOffer(m){
+  if(!H)return;
+  const h=H,id=String(m.f).slice(0,16);
+  const reply=p=>sigSend(h.ch,Object.assign({to:id},p));
+  const old=h.peers.get(id);
+  if(old){
+    if(old.offerId===m.i){if(old.answer)reply({k:'a',sdp:old.answer});return;}
+    if(old.open)return reply({k:'x',msg:'তুমি আগেই এই রুমে আছো।'});
+    dropPeer(old);
+  }
+  if(G)return reply({k:'x',msg:'খেলা শুরু হয়ে গেছে।'});
+  if(1+h.peers.size+h.bots>=MAX_P)return reply({k:'x',msg:'রুম ভর্তি (সর্বোচ্চ '+bn(MAX_P)+' জন)।'});
+  const peer={id,name:uniqueName(String(m.nm||'খেলোয়াড়').slice(0,14)),pc:null,dc:null,open:false,offerId:m.i,answer:null,seat:null};
+  h.peers.set(id,peer);
+  try{
+    const pc=new RTCPeerConnection({iceServers:ICE});peer.pc=pc;
+    pc.ondatachannel=ev=>bindPeer(peer,ev.channel);
+    pc.onconnectionstatechange=()=>{if(pc.connectionState==='failed'||pc.connectionState==='closed')dropPeer(peer);};
+    await pc.setRemoteDescription({type:'offer',sdp:String(m.sdp||'')});
+    const an=await pc.createAnswer();await pc.setLocalDescription(an);await waitIce(pc);
+    if(H!==h||h.peers.get(id)!==peer)return;
+    peer.answer=slim(pc.localDescription.sdp);
+    reply({k:'a',sdp:peer.answer});
+  }catch(err){console.warn(err);dropPeer(peer);}
+}
+function bindPeer(peer,dc){
+  peer.dc=dc;
+  dc.onopen=()=>{peer.open=true;toast(peer.name+' ঢুকেছে');broadcastLobby();renderLobby();};
+  dc.onmessage=ev=>{let m;try{m=JSON.parse(ev.data);}catch(e){return;}hostMsg(peer,m);};
+  dc.onclose=()=>dropPeer(peer);
+}
+/* A guest asks to pass card #i. The host checks it is really their turn; if not, it just re-sends their own view. */
+function hostMsg(peer,m){
+  if(!m||m.t!=='pass'||!G||G.over||peer.seat==null)return;
+  const pl=G.players[peer.seat];
+  const ok=!!pl&&pl.kind==='human'&&doPass(peer.seat,m.i);
+  if(!ok)sendTo(peer,{t:'s',phase:'play',you:peer.seat,v:viewFor(G,peer.seat)});
+}
+function dropPeer(p){
+  if(!H||H.peers.get(p.id)!==p)return;
+  H.peers.delete(p.id);
+  try{p.dc&&p.dc.close();p.pc&&p.pc.close();}catch(e){}
+  if(G){
+    const s=p.seat;
+    if(s!=null&&G.players[s]&&G.players[s].kind==='human'){
+      G.players[s].kind='bot';G.players[s].name+=' 🤖';
+      toast(p.name+' বেরিয়ে গেছে — বট খেলবে');pushView();scheduleBot();
+    }
+  }else{
+    if(p.open)toast(p.name+' বেরিয়ে গেছে');
+    broadcastLobby();renderLobby();
+  }
+}
+function sendTo(p,obj){try{if(p.dc&&p.dc.readyState==='open')p.dc.send(JSON.stringify(obj));}catch(e){}}
+function lobbyNames(){return[H.name,...openPeers().map(p=>p.name),...Array.from({length:H.bots},(_,i)=>botName(i+1))];}
+function broadcastLobby(){
+  if(!H||G)return;
+  const ps=openPeers(),names=lobbyNames();
+  ps.forEach((p,i)=>sendTo(p,{t:'s',phase:'lobby',code:H.code,names,you:i+1}));
+}
+/* every guest gets a view built for THEIR seat only — other hands never leave the host */
+function broadcast(){
+  if(!H||!G)return;
+  for(const p of openPeers())if(p.seat!=null&&G.players[p.seat])sendTo(p,{t:'s',phase:'play',you:p.seat,v:viewFor(G,p.seat)});
+}
+function startOnline(){
+  if(mode!=='host'||!H||G)return;
+  for(const p of [...H.peers.values()])if(!p.open)dropPeer(p);
+  const ps=openPeers();
+  if(1+ps.length+H.bots<MIN_P)return toast('কমপক্ষে '+bn(MIN_P)+' জন লাগবে (বট যোগ করা যায়)',true);
+  ps.forEach((p,i)=>p.seat=i+1);
+  const list=[{name:H.name,kind:'human'},...ps.map(p=>({name:p.name,kind:'human'}))];
+  for(let i=0;i<H.bots;i++)list.push({name:botName(i+1),kind:'bot'});
+  newGame(list);
+}
+function changeBots(d){
+  if(mode!=='host'||!H||G)return;
+  const total=1+openPeers().length+H.bots;
+  if(d>0&&total>=MAX_P)return toast('সর্বোচ্চ '+bn(MAX_P)+' জন',true);
+  if(d<0&&H.bots<=0)return;
+  H.bots+=d;broadcastLobby();renderLobby();
+}
+
+/* ---------- client ---------- */
+async function joinRoom(){
+  const code=($('roomCode').value||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(code.length<4)return toast('আগে রুম কোড লেখো',true);
+  const name=getName();busy('রুম খোঁজা হচ্ছে…');
+  try{
+    await connectOnline();leaveAll();busy('রুম খোঁজা হচ্ছে…');
+    const me=C={code,id:uid(),pc:null,dc:null,ch:null,lobby:null};mode='client';
+    const alive=()=>{if(C!==me)throw new Error('বাতিল');};
+    const pc=new RTCPeerConnection({iceServers:ICE});me.pc=pc;
+    const dc=pc.createDataChannel('g');me.dc=dc;
+    let openRes,openRej;const opened=new Promise((a,b)=>{openRes=a;openRej=b;});opened.catch(()=>{});
+    dc.onopen=()=>openRes();
+    dc.onmessage=ev=>{let m;try{m=JSON.parse(ev.data);}catch(e){return;}clientMsg(me,m);};
+    dc.onclose=()=>{if(C===me)clientLost('হোস্টের সাথে সংযোগ কেটে গেছে।');};
+    pc.onconnectionstatechange=()=>{if(pc.connectionState==='failed'&&C===me)clientLost('হোস্টের সাথে সংযোগ ব্যর্থ হয়েছে।');};
+    const off=await pc.createOffer();await pc.setLocalDescription(off);await waitIce(pc);alive();
+    let reply=null;
+    me.ch=await openRoomCh(code,p=>{if(p&&p.to===me.id&&(p.k==='a'||p.k==='x'))reply=p;});alive();
+    const offer={k:'o',i:uid(),f:me.id,nm:name,sdp:slim(pc.localDescription.sdp)};
+    const t0=Date.now();let lastSend=0;
+    while(!reply){
+      alive();
+      if(Date.now()-t0>14000)throw new Error('রুম '+code+' পাওয়া যায়নি। কোড দেখো, অথবা হোস্ট হয়তো চলে গেছে।');
+      if(Date.now()-lastSend>2500){lastSend=Date.now();sigSend(me.ch,offer);}
+      await sleep(120);
+    }
+    if(reply.k==='x')throw new Error(reply.msg||'হোস্ট ঢুকতে দেয়নি।');
+    await pc.setRemoteDescription({type:'answer',sdp:String(reply.sdp)});
+    const to=setTimeout(()=>openRej(new Error('হোস্টের সাথে সরাসরি সংযোগ হয়নি। নেটওয়ার্ক হয়তো peer-to-peer আটকে দিচ্ছে।')),25000);
+    try{await opened;}finally{clearTimeout(to);}
+    alive();busy(null);
+  }catch(e){
+    const quiet=e.message==='বাতিল';
+    if(!quiet){leaveAll();toast(e.message,true);}
+  }
+}
+function clientMsg(me,m){
+  if(C!==me||!m||m.t!=='s')return;
+  if(m.phase==='lobby'){me.lobby=m;V=null;mySeat=m.you;show('lobby');renderLobby();}
+  else if(m.phase==='play'&&m.v){mySeat=m.you;V=m.v;show('game');render();}
+}
+function clientLost(msg){leaveAll();show('menu');toast(msg,true);}
+
+/* ---------- lobby ---------- */
+function renderLobby(){
+  const host=mode==='host',code=host?H&&H.code:C&&C.code;
+  if(!code)return;
+  const names=host?lobbyNames():(C.lobby&&C.lobby.names)||[];
+  $('lobbyCode').textContent=code;
+  $('lobbyTitle').textContent=(host?'তোমার রুম':'রুমে ঢুকেছ')+' — '+bn(names.length)+'/'+bn(MAX_P)+' জন';
+  $('lobbyList').innerHTML=names.map((n,i)=>'<li><span class="dot"></span><span>'+esc(n)+(i===(host?0:mySeat)?' (তুমি)':'')+'</span>'+(i===0?'<span class="host">হোস্ট</span>':'')+'</li>').join('');
+  $('btnStart').hidden=!host;$('inviteRow').hidden=!host;$('botRow').hidden=!host;
+  const enough=names.length>=MIN_P;
+  $('btnStart').setAttribute('aria-disabled',enough?'false':'true');
+  $('lobbyHint').textContent=host
+    ?(enough?'সবাই এলে "Start Game" চাপো।':'কমপক্ষে '+bn(MIN_P)+' জন লাগবে। বন্ধুদের রুম কোড বা লিংক পাঠাও, নয়তো "বট যোগ করো" চাপো।')
+    :'হোস্ট খেলা শুরু করার অপেক্ষায়…';
+}
+function inviteLink(){return location.href.split('#')[0].split('?')[0]+'#room='+(H?H.code:'');}
+
+/* ===================== MENU WIRING ===================== */
+function rollName(){
+  const inp=$('myName'),b=$('btnRandName');
+  inp.value=randBnName();
+  b.classList.remove('spin');void b.offsetWidth;b.classList.add('spin');
+}
+$('btnRandName').onclick=rollName;
+rollName();
+$('goHost').onclick=createRoom;
+$('goJoin').onclick=joinRoom;
+$('roomCode').addEventListener('keydown',e=>{if(e.key==='Enter')joinRoom();});
+
+/* playing */
+$('hand').addEventListener('click',e=>{
+  const bt=e.target.closest('.hc');if(!bt||!canGive())return;
+  const i=+bt.dataset.i;picked=picked===i?null:i;
+  [...$('hand').children].forEach((c,k)=>{
+    const on=k===picked;c.classList.toggle('sel',on);c.setAttribute('aria-pressed',on);
+    const old=c.querySelector('.rib');if(old)old.remove();
+    if(on){const r=document.createElement('span');r.className='rib';r.textContent='দেবে ➜';c.appendChild(r);}
+  });
+  updateGive();
+});
+$('btnGive').onclick=()=>{
+  if(!canGive())return;
+  if(picked==null)return toast('আগে একটি কার্ড বেছে নাও',true);
+  onGive();
+};
+$('coverGo').onclick=()=>{if(!hot||hot.phase!=='cover')return;hot.phase='pick';picked=null;pushView();};
+
+/* rules / restart / leave */
+$('btnRules').onclick=()=>{$('rulesBox').hidden=false;$('rulesClose').focus();};
+$('rulesClose').onclick=()=>{$('rulesBox').hidden=true;};
+addEventListener('keydown',e=>{if(e.key==='Escape')$('rulesBox').hidden=true;});
+$('btnRestart').onclick=()=>{if(mode==='client')return toast('শুধু হোস্ট রিস্টার্ট করতে পারে',true);restartGame();};
+$('winRestart').onclick=()=>{if(mode==='client')return toast('শুধু হোস্ট রিস্টার্ট করতে পারে',true);restartGame();};
+$('btnMode').onclick=askLeave;
+$('winMode').onclick=toMenu;
+$('btnStart').onclick=()=>{if($('btnStart').getAttribute('aria-disabled')==='true')return toast('কমপক্ষে '+bn(MIN_P)+' জন লাগবে — বট যোগ করা যায়',true);startOnline();};
+$('btnAddBot').onclick=()=>changeBots(1);
+$('btnDelBot').onclick=()=>changeBots(-1);
+$('btnLeave').onclick=toMenu;
+$('btnCopy').onclick=async()=>{
+  const link=inviteLink();
+  try{await navigator.clipboard.writeText(link);toast('লিংক কপি হয়েছে');}
+  catch(e){window.prompt('লিংকটি কপি করো:',link);}
+};
+
+/* invite link: #room=CODE */
+const hm=location.hash.match(/room=([A-Za-z0-9]+)/);
+if(hm){$('roomCode').value=hm[1].toUpperCase();toast('রুম কোড বসানো হয়েছে — নাম লিখে "Join Room" চাপো');}
+
+addEventListener('beforeunload',()=>{try{leaveAll();}catch(e){}});
+})();
+</script>
+</body>
+</html>

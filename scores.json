@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Nova",
+    "score": 1420,
+    "kills": 12,
+    "mode": "ffa",
+    "t": 1740000000000
+  },
+  {
+    "name": "Rex",
+    "score": 980,
+    "kills": 8,
+    "mode": "ffa",
+    "t": 1740000000000
+  },
+  {
+    "name": "Pixel",
+    "score": 750,
+    "kills": 5,
+    "mode": "race",
+    "t": 1740000000000
+  }
+]

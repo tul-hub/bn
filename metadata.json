@@ -1,0 +1,6 @@
+{
+  "name": "OmniGame Room - Real-Time Multiplayer Games",
+  "description": "A real-time multiplayer gaming hub powered by a Node.js WebSocket server. Play 14 action, board, and arcade games with friends over local Wi-Fi or online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
